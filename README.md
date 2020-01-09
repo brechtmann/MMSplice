@@ -28,7 +28,7 @@ pip install mmsplice
 
 ## Run MMSplice Online
 
-You can run mmsplice with following google colab notebooks online:
+You can run mmsplice using the following google colab notebook online:
 
 - [run on vcf file](https://colab.research.google.com/drive/1Kw5rHMXaxXXsmE3WecxbXyGQJma80Eq6)
 
@@ -36,26 +36,26 @@ You can run mmsplice with following google colab notebooks online:
 -----------------
 
 #### 1. Prepare annotation (gtf) file
-Standard human gene annotation file in GTF format can be downloaded from ensembl or gencode.
+Standard human gene annotation files in GTF format can be downloaded from ensembl or gencode.
 `MMSplice` can work directly with those files, however, some filtering is higly recommended.
 
 - Filter for protein coding genes.
 
 #### 2. Prepare variant (VCF) file
-A correctly formatted VCF file with work with `MMSplice`, however the following steps will make it less prone to false positives:
+A correctly formatted VCF file will work with `MMSplice`, however the following steps will make it less prone to false positives:
 
-- Quality filtering. Low quality variants leads to unreliable predictions.
+- Quality filtering, as low quality variants lead to unreliable predictions.
 - Avoid presenting multiple variants in one line by splitting them into multiple lines. Example code to do it:
   ```bash
   bcftools norm -m-both -o out.vcf in.vcf.gz
   ```
-- Left-normalization. For instance, GGCA-->GG is not left-normalized while GCA-->G is. Details for unified representation of genetic variants see [Tan et al.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4481842/)
+- Left-normalization. For instance, GGCA-->GG is not left-normalized while GCA-->G is. Details for unified representations of genetic variants can be found in [Tan et al.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4481842/)
   ```bash
   bcftools norm -f reference.fasta -o out.vcf in.vcf
   ```
 
 #### 3. Prepare reference genome (fasta) file
-Human reference fasta file can be downloaded from ensembl/gencode. Make sure the chromosome name matches with GTF annotation file you use.
+Human reference fasta files can be downloaded from ensembl/gencode. Make sure the chromosome names matche the ones in the GTF annotation file in use.
 
 
 ### Example code
@@ -120,4 +120,4 @@ Output of MMSplice is an tabular data which contains following described columns
 
 ## VEP Plugin
 
-The VEP plugin wraps the prediction function from `mmsplice` python package. Please check documentation of vep plugin [under VEP_plugin/README.md](VEP_plugin/README.md).
+The VEP plugin wraps the prediction function from the `mmsplice` python package. Please check documentation of vep plugin [under VEP_plugin/README.md](VEP_plugin/README.md).
